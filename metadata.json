@@ -1,0 +1,6 @@
+{
+  "name": "NOVA CART – Business Rescue & Smart Commerce Platform",
+  "description": "AI-powered quick-commerce turnaround platform for NOVA CART: retention analytics, delivery & inventory rescue, smart promotions, support ticket management, and 6-month ₹25L business simulator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

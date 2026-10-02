@@ -1,0 +1,403 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information with role and preferences",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["customer", "retailer", "admin", "executive"],
+          "description": "User access role"
+        },
+        "location": {
+          "type": "string",
+          "description": "User neighborhood/city"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of user creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Store": {
+      "title": "Store",
+      "description": "Neighborhood partner retail store",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Store business name"
+        },
+        "category": {
+          "type": "string",
+          "description": "Store category (e.g. Grocery, Pharmacy, Bakery)"
+        },
+        "location": {
+          "type": "string",
+          "description": "Neighborhood location in Hyderabad"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Store rating"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Open", "Closed", "Busy"],
+          "description": "Operational status"
+        },
+        "isBusyMode": {
+          "type": "boolean",
+          "description": "Whether store has enabled busy store mode"
+        },
+        "estimatedPreparationTime": {
+          "type": "number",
+          "description": "Estimated preparation time in minutes"
+        },
+        "distance": {
+          "type": "string",
+          "description": "Distance from customer"
+        },
+        "image": {
+          "type": "string",
+          "description": "Store image URL"
+        }
+      },
+      "required": ["name", "category", "location", "status"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Catalog item sold by a local retailer",
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "string",
+          "description": "ID of selling store"
+        },
+        "storeName": {
+          "type": "string",
+          "description": "Name of selling store"
+        },
+        "name": {
+          "type": "string",
+          "description": "Product title"
+        },
+        "category": {
+          "type": "string",
+          "description": "Product category"
+        },
+        "price": {
+          "type": "number",
+          "description": "Discounted selling price in INR"
+        },
+        "originalPrice": {
+          "type": "number",
+          "description": "MSRP original price in INR"
+        },
+        "stock": {
+          "type": "number",
+          "description": "Available inventory units"
+        },
+        "stockStatus": {
+          "type": "string",
+          "enum": ["In Stock", "Low Stock", "Out of Stock"],
+          "description": "Inventory health status"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Product rating"
+        },
+        "image": {
+          "type": "string",
+          "description": "Product image URL"
+        },
+        "deliveryTime": {
+          "type": "string",
+          "description": "Estimated delivery time (e.g. 15-25 min)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Product specifications and details"
+        }
+      },
+      "required": ["storeId", "name", "category", "price", "stock", "stockStatus"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order placed across connected ecosystem",
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Customer user ID"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "storeId": {
+          "type": "string",
+          "description": "Target store ID"
+        },
+        "storeName": {
+          "type": "string",
+          "description": "Target store name"
+        },
+        "items": {
+          "type": "array",
+          "description": "List of ordered items with quantities and prices"
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "Subtotal order value in INR"
+        },
+        "deliveryFee": {
+          "type": "number",
+          "description": "Delivery charge in INR"
+        },
+        "discount": {
+          "type": "number",
+          "description": "Applied discount in INR"
+        },
+        "total": {
+          "type": "number",
+          "description": "Total order amount in INR"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Order Placed", "Retailer Accepted", "Preparing Order", "Ready for Pickup", "Out for Delivery", "Delivered", "Cancelled", "Delayed"],
+          "description": "Current lifecycle status"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Selected payment method (e.g. UPI Demo, Cash on Delivery, Card Demo)"
+        },
+        "deliveryAddress": {
+          "type": "string",
+          "description": "Customer shipping address in Hyderabad"
+        },
+        "estimatedArrival": {
+          "type": "string",
+          "description": "Estimated delivery time string"
+        },
+        "delayMinutes": {
+          "type": "number",
+          "description": "Minutes delayed if delayed"
+        },
+        "rejectionReason": {
+          "type": "string",
+          "description": "Retailer rejection explanation if rejected"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO order timestamp"
+        }
+      },
+      "required": ["customerId", "storeId", "items", "total", "status", "paymentMethod", "deliveryAddress"]
+    },
+    "SupportTicket": {
+      "title": "SupportTicket",
+      "description": "Customer support and refund dispute ticket",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Creator user ID"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "orderId": {
+          "type": "string",
+          "description": "Associated order ID"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Refund", "Delivery delay", "Missing product", "Coupon issue", "Incorrect order", "Other"],
+          "description": "Complaint category"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["Low", "Medium", "High", "Critical"],
+          "description": "Ticket urgency priority"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Open", "In Progress", "Resolved", "Escalated"],
+          "description": "Ticket lifecycle status"
+        },
+        "assignedAgent": {
+          "type": "string",
+          "description": "Support team agent name"
+        },
+        "resolutionNotes": {
+          "type": "string",
+          "description": "Notes on how ticket was resolved"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last updated timestamp"
+        }
+      },
+      "required": ["userId", "customerName", "category", "priority", "status"]
+    },
+    "Campaign": {
+      "title": "Campaign",
+      "description": "Smart promotional campaign for local commerce",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Creator user ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Campaign title"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["First-order offer", "Repeat purchase reward", "Lapsed customer reactivation", "Category-based promotion", "Nearby retailer promotion", "Referral campaign"],
+          "description": "Campaign strategy category"
+        },
+        "targetSegment": {
+          "type": "string",
+          "description": "Target customer segment"
+        },
+        "budget": {
+          "type": "number",
+          "description": "Allocated budget in INR"
+        },
+        "discountPct": {
+          "type": "number",
+          "description": "Discount or incentive percentage"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Active", "Paused", "Draft", "Completed"],
+          "description": "Campaign status"
+        },
+        "ordersGenerated": {
+          "type": "number",
+          "description": "Attributed order count"
+        },
+        "revenueGenerated": {
+          "type": "number",
+          "description": "Attributed revenue generated in INR"
+        },
+        "redemptionRate": {
+          "type": "number",
+          "description": "Coupon redemption rate percentage"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["userId", "name", "type", "targetSegment", "budget", "status"]
+    },
+    "SimulationRecord": {
+      "title": "SimulationRecord",
+      "description": "Saved Business Rescue simulation scenario with input parameters and calculated business impact",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "scenarioName": {
+          "type": "string",
+          "description": "Name given to the rescue simulation run"
+        },
+        "targetRepeatRate": {
+          "type": "number",
+          "description": "Target repeat purchase rate percentage"
+        },
+        "targetCancellationRate": {
+          "type": "number",
+          "description": "Target order cancellation rate percentage"
+        },
+        "targetDeliveryTime": {
+          "type": "number",
+          "description": "Target average delivery time in minutes"
+        },
+        "targetInventoryAccuracy": {
+          "type": "number",
+          "description": "Target retailer inventory accuracy percentage"
+        },
+        "projectedMonthlyOrders": {
+          "type": "number",
+          "description": "Projected monthly order volume"
+        },
+        "projectedMonthlyRevenue": {
+          "type": "number",
+          "description": "Projected monthly gross revenue in INR"
+        },
+        "projectedAvoidedCancellations": {
+          "type": "number",
+          "description": "Projected monthly cancelled orders rescued"
+        },
+        "budgetSpentLakh": {
+          "type": "number",
+          "description": "Budget utilized in Lakh INR"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO creation timestamp"
+        }
+      },
+      "required": ["userId", "scenarioName", "targetRepeatRate", "targetCancellationRate"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile with roles and metadata"
+    },
+    "/stores/{storeId}": {
+      "schema": "Store",
+      "description": "Local neighborhood retail partner stores"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Products available across neighborhood stores"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Connected customer and retailer orders"
+    },
+    "/tickets/{ticketId}": {
+      "schema": "SupportTicket",
+      "description": "Customer support dispute and resolution tickets"
+    },
+    "/campaigns/{campaignId}": {
+      "schema": "Campaign",
+      "description": "Marketing promotions and customer retention campaigns"
+    },
+    "/simulations/{simId}": {
+      "schema": "SimulationRecord",
+      "description": "Saved rescue simulation models run by users"
+    }
+  }
+}

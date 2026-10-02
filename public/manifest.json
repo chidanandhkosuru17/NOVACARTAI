@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "NOVA CART – Business Rescue & Smart Commerce Platform",
+  "short_name": "NOVA CART",
+  "description": "AI-powered quick-commerce turnaround platform for NOVA CART: retention analytics, delivery & inventory rescue, smart promotions, support ticket management, and 6-month ₹25L business simulator.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "categories": ["business", "finance", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

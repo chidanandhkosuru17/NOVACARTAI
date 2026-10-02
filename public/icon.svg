@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="128" fill="#0f172a"/>
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#grad)" fill-opacity="0.15" stroke="url(#grad)" stroke-width="8"/>
+  <defs>
+    <linearGradient id="grad" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10b981"/>
+      <stop offset="0.5" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="bag" x1="160" y1="180" x2="352" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10b981"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Shopping Bag Body -->
+  <path d="M144 192C144 174.327 158.327 160 176 160H336C353.673 160 368 174.327 368 192V384C368 401.673 353.673 416 336 416H176C158.327 416 144 401.673 144 384V192Z" fill="url(#bag)" filter="drop-shadow(0px 8px 24px rgba(16, 185, 129, 0.4))"/>
+  <!-- Bag Handle -->
+  <path d="M208 176V144C208 117.49 229.49 96 256 96C282.51 96 304 117.49 304 144V176" stroke="#ffffff" stroke-width="24" stroke-linecap="round"/>
+  <!-- Lightning Bolt for Quick-Commerce Turnaround -->
+  <path d="M268 220L216 304H264L244 360L304 276H256L268 220Z" fill="#ffffff" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+</svg>
